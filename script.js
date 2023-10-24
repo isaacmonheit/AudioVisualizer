@@ -15,7 +15,16 @@ function getMicInput() {
             sourceNode.connect(analyser);
             draw();
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err);
+            alert("Error accessing microphone. Please make sure to allow microphone access.");
+        });
+}
+
+// Play the audio
+function playUploadedAudio() {
+    const audioPlayer = document.getElementById('audioPlayer');
+    audioPlayer.play();
 }
 
 document.getElementById('audioFileInput').addEventListener('change', function() {
@@ -35,9 +44,6 @@ document.getElementById('audioFileInput').addEventListener('change', function() 
         analyser.connect(audioContext.destination); // This line ensures you hear the audio as well.
         draw();
     }
-    // Play the audio
-    audioPlayer.play();
-
     // Adjust the volume of the audio player based on the slider
     // volumeSlider.addEventListener('input', function() {
     //     audioPlayer.volume = volumeSlider.value;
